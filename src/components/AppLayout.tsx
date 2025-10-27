@@ -4,10 +4,13 @@ import { Drawer, Box, AppBar, Divider, List, ListItemButton, ListItemText, Toolb
 import { IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const drawerWidth = 240
   const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname()
   const handleDrawerToggle = () => {
     setMobileOpen((prev) => !prev)
   }
@@ -40,10 +43,20 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       >
         <Box role="presentation" sx={{ p: 2 }} onClick={handleDrawerToggle}>
           <List>
-            <ListItemButton>
+            <ListItemButton
+              component={Link}
+              href="/dashboard"
+              selected={pathname === '/dashboard'}
+              aria-current={pathname === '/dashboard' ? 'page' : undefined}
+            >
               <ListItemText primary="Dashboard" />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton
+              component={Link}
+              href="/issues"
+              selected={pathname === '/issues'}
+              aria-current={pathname === '/issues' ? 'page' : undefined}
+            >
               <ListItemText primary="Issues" />
             </ListItemButton>
           </List>
@@ -61,10 +74,20 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <Toolbar />
         <Divider />
         <List>
-          <ListItemButton>
+          <ListItemButton
+            component={Link}
+            href="/dashboard"
+            selected={pathname === '/dashboard'}
+            aria-current={pathname === '/dashboard' ? 'page' : undefined}
+          >
             <ListItemText primary="Dashboard" />
           </ListItemButton>
-          <ListItemButton>
+          <ListItemButton
+            component={Link}
+            href="/issues"
+            selected={pathname === '/issues'}
+            aria-current={pathname === '/issues' ? 'page' : undefined}
+          >
             <ListItemText primary="Issues" />
           </ListItemButton>
         </List>
