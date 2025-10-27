@@ -3,7 +3,7 @@
 import { Drawer, Box, AppBar, Divider, List, ListItemButton, ListItemText, Toolbar, Typography } from '@mui/material'
 import { IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -11,8 +11,15 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const drawerWidth = 240
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
+  const menuBtnRef = useRef<HTMLButtonElement>(null)
   const handleDrawerToggle = () => {
-    setMobileOpen((prev) => !prev)
+    setMobileOpen((prev) => {
+      const next = !prev
+      if (prev && menuBtnRef.current) {
+        menuBtnRef.current.focus()
+      }
+      return next
+    })
   }
 
   return (
@@ -22,7 +29,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <Toolbar>
           <IconButton
             color="inherit"
+            ref={menuBtnRef}
             aria-label="open navigation"
+            aria-controls="nav-drawer-mobile"
+            aria-expanded={mobileOpen ? 'true' : 'false'}
             edge="start"
             sx={{ mr: 2, display: { md: 'none' } }}
             onClick={handleDrawerToggle}
@@ -39,6 +49,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
+        slotProps={{ paper: { id: 'nav-drawer-mobile', role: 'navigation' } }}
         sx={{ display: { xs: 'block', md: 'none' }, '& .MuiDrawer-paper': { width: drawerWidth } }}
       >
         <Box role="presentation" sx={{ p: 2 }} onClick={handleDrawerToggle}>
@@ -70,6 +81,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           display: { xs: 'none', md: 'block' },
           '& .MuiDrawer-paper': { width: drawerWidth, boxSizing: 'border-box' },
         }}
+        slotProps={{ paper: { id: 'nav-drawer-desktop', role: 'navigation' } }}
       >
         <Toolbar />
         <Divider />
