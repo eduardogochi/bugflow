@@ -32,11 +32,11 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         </Toolbar>
       </AppBar>
       <Drawer
-        variant="permanent"
+        variant="temporary"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
-        sx={{ display: { xs: 'block', md: 'none' }, '& .MultiDrawer-paper': { width: drawerWidth } }}
+        sx={{ display: { xs: 'block', md: 'none' }, '& .MuiDrawer-paper': { width: drawerWidth } }}
       >
         <Box role="presentation" sx={{ p: 2 }} onClick={handleDrawerToggle}>
           <List>
@@ -53,7 +53,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       <Drawer
         variant="permanent"
         open
-        sx={{ display: { xs: 'none', md: 'block' }, '& .MultiDrawer-paper': { width: drawerWidth } }}
+        sx={{
+          display: { xs: 'none', md: 'block' },
+          '& .MuiDrawer-paper': { width: drawerWidth, boxSizing: 'border-box' },
+        }}
       >
         <Toolbar />
         <Divider />
@@ -66,7 +69,17 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           </ListItemButton>
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, ml: { md: `${drawerWidth}px` } }}>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          ml: { md: `${drawerWidth}px` },
+          p: { xs: 2, sm: 3 },
+          overflow: 'auto',
+          bgcolor: 'background.default',
+          minHeight: '100vh',
+        }}
+      >
         <Toolbar />
         {children}
       </Box>
