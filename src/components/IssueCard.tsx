@@ -6,6 +6,8 @@ type IssueCardProps = {
   onToggleStatus: (id: string) => void
 }
 
+// This component is stateless: it receives `issue` via props and calls `onToggleStatus(issue.id)`
+// to request changes from the parent, keeping a single source of truth in IssueList.
 export default function IssueCard({ issue, onToggleStatus }: IssueCardProps) {
   return (
     <div

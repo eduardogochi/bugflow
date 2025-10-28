@@ -26,6 +26,9 @@ const MOCK_ISSUES: Issue[] = [
   },
 ]
 
+// Data flow: IssueList owns the `issues` state (parent -> child via props).
+// IssueCard asks for changes via `onToggleStatus` (child -> parent callback).
+// IssueList updates state immutably and re-renders, pushing updated props back down.
 export default function IssueList() {
   const [issues, setIssues] = useState<Issue[]>(MOCK_ISSUES)
 
