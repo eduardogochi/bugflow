@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import IssueCard from './IssueCard'
 import { Issue } from '@/app/types/issue'
 
@@ -26,10 +27,18 @@ const MOCK_ISSUES: Issue[] = [
 ]
 
 export default function IssueList() {
+  const [issues, setIssues] = useState<Issue[]>(MOCK_ISSUES)
+
+  const handleToggleStatus = (id: string) => {
+    setIssues((prev) =>
+      prev.map((issue) => (issue.id === id ? { ...issue, status: issue.status === 'open' ? 'closed' : 'open' } : issue))
+    )
+  }
+
   return (
     <ul>
-      {MOCK_ISSUES.map((issue) => (
-        <IssueCard key={issue.id} issue={issue} />
+      {issues.map((issue) => (
+        <IssueCard key={issue.id} issue={issue} onToggleStatus={handleToggleStatus} />
       ))}
     </ul>
   )

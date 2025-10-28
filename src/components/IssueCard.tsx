@@ -1,18 +1,12 @@
-import { useState } from 'react'
 import type { Issue } from '@/app/types/issue'
 import { Button } from '@mui/material'
 
 type IssueCardProps = {
   issue: Issue
+  onToggleStatus: (id: string) => void
 }
 
-export default function IssueCard({ issue }: IssueCardProps) {
-  const [status, setStatus] = useState<Issue['status']>(issue.status)
-
-  const handleToggle = () => {
-    setStatus((prev) => (prev === 'open' ? 'closed' : 'open'))
-  }
-
+export default function IssueCard({ issue, onToggleStatus }: IssueCardProps) {
   return (
     <div
       style={{
@@ -22,12 +16,12 @@ export default function IssueCard({ issue }: IssueCardProps) {
         marginBottom: 8,
       }}
     >
-      <div style={{ fontWeight: 600, color: status === 'open' ? 'red' : 'green' }}>{issue.title}</div>
+      <div style={{ fontWeight: 600, color: issue.status === 'open' ? 'red' : 'green' }}>{issue.title}</div>
       <div style={{ fontSize: 12, color: '#666' }}>
-        Status:{status} | Assignee:{issue.assignee ?? 'Unassigned'}
+        Status:{issue.status} | Assignee:{issue.assignee ?? 'Unassigned'}
       </div>
       <div style={{ fontSize: 12, color: '#999' }}>Created: {issue.createdAt}</div>
-      <Button variant="contained" onClick={handleToggle} style={{ marginTop: 8 }}>
+      <Button variant="contained" onClick={() => onToggleStatus(issue.id)} style={{ marginTop: 8 }}>
         Toggle Status
       </Button>
     </div>
