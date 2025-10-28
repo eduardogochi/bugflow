@@ -4,6 +4,7 @@ import { AppLayout } from '@/components/AppLayout'
 import { Typography, Container, Button } from '@mui/material'
 
 import IssueList from '@/components/IssueList'
+import AddIssueForm from '@/components/forms/AddIssueForm'
 
 export default function Home() {
   return (
@@ -15,9 +16,7 @@ export default function Home() {
         <Typography variant="body1" sx={{ mt: 4, mb: 4 }} color="textSecondary">
           Bugflow is a bug tracking tool for software development teams.
         </Typography>
-        <Button variant="contained" color="secondary">
-          Get Started
-        </Button>
+        <AddIssueForm />
         <IssueList />
       </Container>
     </AppLayout>

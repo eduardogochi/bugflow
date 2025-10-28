@@ -1,5 +1,25 @@
 import { issues } from '@/lib/mockIssues'
+import { NextResponse } from 'next/server'
+import { issueSchema } from '@/lib/validation/issues'
 
 export async function GET() {
-  return new Response(JSON.stringify(issues))
+  return NextResponse.json(issues)
+}
+
+export async function POST(req: Request) {
+  const json = await req.json()
+  const parsed = issueSchema.safeParse(json)
+  if (!parsed.success) {
+    return NextResponse.json(
+      {
+        error: 'Invalid input',
+        issues: parsed.error,
+      },
+      { status: 400 }
+    )
+  }
+  const data = parsed.data
+  const created = { id: crypto.randomUUID(), ...data, createdAt: new Date().toISOString() }
+
+  return NextResponse.json(created, { status: 201 })
 }
