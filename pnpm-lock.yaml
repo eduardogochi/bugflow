@@ -23,6 +23,12 @@ importers:
       '@mui/material':
         specifier: ^7.3.4
         version: 7.3.4(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@tanstack/react-query':
+        specifier: ^5.90.5
+        version: 5.90.5(react@19.2.0)
+      '@tanstack/react-query-devtools':
+        specifier: ^5.90.2
+        version: 5.90.2(@tanstack/react-query@5.90.5(react@19.2.0))(react@19.2.0)
       next:
         specifier: 16.0.0
         version: 16.0.0(@babel/core@7.28.5)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -685,6 +691,23 @@ packages:
 
   '@tailwindcss/postcss@4.1.16':
     resolution: {integrity: sha1-d1oFMdN3pZWnDfSvrMb8Z/ORp1M=}
+
+  '@tanstack/query-core@5.90.5':
+    resolution: {integrity: sha1-AXX59RdRSQbbirN5WJ7T+WaU7MQ=}
+
+  '@tanstack/query-devtools@5.90.1':
+    resolution: {integrity: sha1-xXpzmlKT9JYKSmtvtLfkpW5r2TI=}
+
+  '@tanstack/react-query-devtools@5.90.2':
+    resolution: {integrity: sha1-JI1q6JrOfcLagW+pXNwrT2PJ5NI=}
+    peerDependencies:
+      '@tanstack/react-query': ^5.90.2
+      react: ^18 || ^19
+
+  '@tanstack/react-query@5.90.5':
+    resolution: {integrity: sha1-VF5hKCx4e9h6xXhdqaSUNGL3jvY=}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@tybys/wasm-util@0.10.1':
     resolution: {integrity: sha1-7N3TIFzx4tUnRkn/Du3SmR7X9BQ=}
@@ -2894,6 +2917,21 @@ snapshots:
       '@tailwindcss/oxide': 4.1.16
       postcss: 8.5.6
       tailwindcss: 4.1.16
+
+  '@tanstack/query-core@5.90.5': {}
+
+  '@tanstack/query-devtools@5.90.1': {}
+
+  '@tanstack/react-query-devtools@5.90.2(@tanstack/react-query@5.90.5(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@tanstack/query-devtools': 5.90.1
+      '@tanstack/react-query': 5.90.5(react@19.2.0)
+      react: 19.2.0
+
+  '@tanstack/react-query@5.90.5(react@19.2.0)':
+    dependencies:
+      '@tanstack/query-core': 5.90.5
+      react: 19.2.0
 
   '@tybys/wasm-util@0.10.1':
     dependencies:

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import IssueCard from './IssueCard'
 import { Issue } from '@/app/types/issue'
 
@@ -8,59 +8,39 @@ import { Issue } from '@/app/types/issue'
 // IssueCard asks for changes via `onToggleStatus` (child -> parent callback).
 // IssueList updates state immutably and re-renders, pushing updated props back down.
 export default function IssueList() {
-  const [issues, setIssues] = useState<Issue[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    const ac = new AbortController()
-    ;(async () => {
-      try {
-        setError(null)
-        setLoading(true)
-        const res = await fetch('/api/issues', { signal: ac.signal, cache: 'no-store' })
-
-        if (!res.ok) {
-          throw new Error(`Failed to fetch issues${res.status}`)
-        }
-
-        const data: Issue[] = await res.json()
-        setIssues(data)
-      } catch (error: any) {
-        setError(error instanceof Error ? error.message : 'An unknown error occurred')
-      } finally {
-        setLoading(false)
+  const { data, isLoading, isError, error, refetch } = useQuery({
+    queryKey: ['issues'],
+    queryFn: async () => {
+      const res = await fetch('/api/issues', { cache: 'no-store' })
+      if (!res.ok) {
+        throw new Error(`Failed to fetch issues${res.status}`)
       }
-    })()
-    return () => ac.abort()
-  }, [])
+      return (await res.json()) as Issue[]
+    },
+    staleTime: 60 * 1000,
+    retry: 2,
+  })
 
-  const handleToggleStatus = (id: string) => {
-    setIssues((prev) =>
-      prev.map((issue) => (issue.id === id ? { ...issue, status: issue.status === 'open' ? 'closed' : 'open' } : issue))
-    )
-  }
-
-  if (error) {
+  if (isError) {
     return (
       <div>
-        Failed to load issues. <button>Retry</button>
+        Failed to load issues. <button onClick={() => refetch()}>Retry</button>
       </div>
     )
   }
 
-  if (loading) {
+  if (isLoading) {
     return <div>Loading issues...</div>
   }
 
-  if (issues.length === 0) {
+  if (!data || data.length === 0) {
     return <div>No issues found</div>
   }
 
   return (
     <ul>
-      {issues.map((issue) => (
-        <IssueCard key={issue.id} issue={issue} onToggleStatus={handleToggleStatus} />
+      {data.map((issue) => (
+        <IssueCard key={issue.id} issue={issue} onToggleStatus={() => refetch()} />
       ))}
     </ul>
   )
