@@ -10,10 +10,11 @@ export async function POST(req: Request) {
   const json = await req.json()
   const parsed = issueSchema.safeParse(json)
   if (!parsed.success) {
+    const issues = parsed.error?.flatten((issue) => issue.message)
     return NextResponse.json(
       {
         error: 'Invalid input',
-        issues: parsed.error,
+        issues,
       },
       { status: 400 }
     )
