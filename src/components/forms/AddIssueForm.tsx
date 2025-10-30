@@ -24,6 +24,7 @@ export default function AddIssueForm() {
   } = useForm<IssueInput>({
     resolver: zodResolver(issueSchema),
     mode: 'onBlur',
+    defaultValues: { status: 'new', assignee: '' },
   })
 
   const onSubmit = async (data: IssueInput) => {
@@ -50,13 +51,14 @@ export default function AddIssueForm() {
 
       if (Array.isArray(formErrors) && formErrors.length > 0) {
         setError('_form', { type: 'server', message: formErrors[0] })
-      } else if (body?.error) {
-        setError('_form', { type: 'server', message: body.error })
+      } else if (body?.error || body?.detail) {
+        const msg = [body?.error, body?.detail].filter(Boolean).join(': ')
+        setError('_form', { type: 'server', message: msg })
       }
 
       setSnack({
         open: true,
-        message: 'Failed to create issue',
+        message: body?.detail || body?.error || 'Failed to create issue',
         severity: 'error',
       })
       return
@@ -75,20 +77,51 @@ export default function AddIssueForm() {
       <input type="hidden" {...register('_form')} />
       {errors._form?.message && <p className="text-red-600 text-sm">{errors._form.message}</p>}
       <div>
-        <label className="block text-sm font-medium">Title</label>
-        <input {...register('title')} className="w-full border rounded px-3 py-2" placeholder="Short Summary" />
+        <label className="block text-sm font-medium text-slate-800">Title</label>
+        <input
+          {...register('title')}
+          className="w-full border border-slate-300 rounded px-3 py-2 bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Short Summary"
+        />
         {errors.title && <p className="text-red-600 text-sm">{errors.title.message}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Description</label>
+        <label className="block text-sm font-medium text-slate-800">Description</label>
         <textarea
           {...register('description')}
-          className="w-full border rounded px-3 py-2"
+          className="w-full border border-slate-300 rounded px-3 py-2 bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="What happened?"
           rows={4}
         />
         {errors.description && <p className="text-red-600 text-sm">{errors.description.message}</p>}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-slate-800">Status</label>
+        <select
+          {...register('status')}
+          className="w-full border border-slate-300 rounded px-3 py-2 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="new">New</option>
+          <option value="open">Open</option>
+          <option value="in-progress">In Progress</option>
+          <option value="in-review">In Review</option>
+          <option value="testing">Testing</option>
+          <option value="resolved">Resolved</option>
+          <option value="closed">Closed</option>
+        </select>
+        {errors.status && <p className="text-red-600 text-sm">{String(errors.status.message)}</p>}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-slate-800">Assignee (optional)</label>
+        <input
+          {...register('assignee')}
+          className="w-full border border-slate-300 rounded px-3 py-2 bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="username or email"
+        />
+        {errors.assignee && <p className="text-red-600 text-sm">{errors.assignee.message}</p>}
       </div>
 
       <button

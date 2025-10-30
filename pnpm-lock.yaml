@@ -26,6 +26,9 @@ importers:
       '@mui/material':
         specifier: ^7.3.4
         version: 7.3.4(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@prisma/client':
+        specifier: ^6.18.0
+        version: 6.18.0(prisma@6.18.0(typescript@5.9.3))(typescript@5.9.3)
       '@tanstack/react-query':
         specifier: ^5.90.5
         version: 5.90.5(react@19.2.0)
@@ -75,6 +78,9 @@ importers:
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
+      prisma:
+        specifier: ^6.18.0
+        version: 6.18.0(typescript@5.9.3)
       tailwindcss:
         specifier: ^4
         version: 4.1.16
@@ -608,8 +614,41 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha1-a3kDLnYKCJnNQgRxC+7elyo6GF8=}
 
+  '@prisma/client@6.18.0':
+    resolution: {integrity: sha1-lfDv4DtYJ9m/XIC2tymORglLX78=}
+    engines: {node: '>=18.18'}
+    peerDependencies:
+      prisma: '*'
+      typescript: '>=5.1.0'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+      typescript:
+        optional: true
+
+  '@prisma/config@6.18.0':
+    resolution: {integrity: sha1-P48uyhLOtB+B40sYazqiYZlZCGw=}
+
+  '@prisma/debug@6.18.0':
+    resolution: {integrity: sha1-4BN/pAe20QsAul/243czNBxQXZw=}
+
+  '@prisma/engines-version@6.18.0-8.34b5a692b7bd79939a9a2c3ef97d816e749cda2f':
+    resolution: {integrity: sha1-vJmUegDzSBZ5vIzLPtOKFfWzr70=}
+
+  '@prisma/engines@6.18.0':
+    resolution: {integrity: sha1-4QSObbtJH3turjZ+pGdPKV5L1TI=}
+
+  '@prisma/fetch-engine@6.18.0':
+    resolution: {integrity: sha1-RINnERsc/5u/K8kGwp6OIhbV88M=}
+
+  '@prisma/get-platform@6.18.0':
+    resolution: {integrity: sha1-gHvL/TCv+rr+xU0SitdVhQ9wevI=}
+
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha1-kn3S+um8M2FAOsLHoAwy3c6a1+g=}
+
+  '@standard-schema/spec@1.0.0':
+    resolution: {integrity: sha1-8ZO3PcMWxBcPLoKogdoPVQ1VG5w=}
 
   '@standard-schema/utils@0.3.0':
     resolution: {integrity: sha1-PV5gjxbCOQwQUo6Y5Zrva/c8rns=}
@@ -1035,6 +1074,14 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
+  c12@3.1.0:
+    resolution: {integrity: sha1-niN5cOHTt0665R0llFy1lmTBLIk=}
+    peerDependencies:
+      magicast: ^0.3.5
+    peerDependenciesMeta:
+      magicast:
+        optional: true
+
   call-bind-apply-helpers@1.0.2:
     resolution: {integrity: sha1-S1QowiK+mF15w9gmV0edvgtZstY=}
     engines: {node: '>= 0.4'}
@@ -1057,6 +1104,13 @@ packages:
   chalk@4.1.2:
     resolution: {integrity: sha1-qsTit3NKdAhnrrFr8CqtVWoeegE=}
     engines: {node: '>=10'}
+
+  chokidar@4.0.3:
+    resolution: {integrity: sha1-e+N6TAPJruHs/oYqSiOyxwwgXTA=}
+    engines: {node: '>= 14.16.0'}
+
+  citty@0.1.6:
+    resolution: {integrity: sha1-D3kE2h7UYl4anqfg+ngJgaq3xeQ=}
 
   cli-cursor@5.0.0:
     resolution: {integrity: sha1-JKSDHs9aawHd6zL7caSyCIsNzjg=}
@@ -1089,6 +1143,13 @@ packages:
 
   concat-map@0.0.1:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+
+  confbox@0.2.2:
+    resolution: {integrity: sha1-hlL1OWHHTZ4IF4S+7XhVWXSpwRA=}
+
+  consola@3.4.2:
+    resolution: {integrity: sha1-WvEQFFOXu2ev2rdwE/3DTK5ZDqc=}
+    engines: {node: ^14.18.0 || >=16.10.0}
 
   convert-source-map@1.9.0:
     resolution: {integrity: sha1-f6rmI1P7QhM2bQypg1jSLoNosF8=}
@@ -1142,6 +1203,10 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha1-pvLc5hL63S7x9Rm3NVHxfoUZmDE=}
 
+  deepmerge-ts@7.1.5:
+    resolution: {integrity: sha1-/4GFZAB/XBUICNK3tzLKyDqkFas=}
+    engines: {node: '>=16.0.0'}
+
   define-data-property@1.1.4:
     resolution: {integrity: sha1-iU3BQbt9MGCuQ2b2oBB+aPvkjF4=}
     engines: {node: '>= 0.4'}
@@ -1149,6 +1214,12 @@ packages:
   define-properties@1.2.1:
     resolution: {integrity: sha1-EHgcxhbrlRqAoDS6/Kpzd/avK2w=}
     engines: {node: '>= 0.4'}
+
+  defu@6.1.4:
+    resolution: {integrity: sha1-Tgyc+f9o/l89fydlzBoBLf3LBHk=}
+
+  destr@2.0.5:
+    resolution: {integrity: sha1-fREv8bkl+40gefrFvbSpCXO1H9s=}
 
   detect-libc@2.1.2:
     resolution: {integrity: sha1-aJxdzcGQDvVYOky59te0c3QgdK0=}
@@ -1161,9 +1232,16 @@ packages:
   dom-helpers@5.2.1:
     resolution: {integrity: sha1-2UAFNrK/giWtmP4FLgKUUaxA6QI=}
 
+  dotenv@16.6.1:
+    resolution: {integrity: sha1-dz8OaVJ6gxXHKF1e5zxEWdIKgCA=}
+    engines: {node: '>=12'}
+
   dunder-proto@1.0.1:
     resolution: {integrity: sha1-165mfh3INIL4tw/Q9u78UNow9Yo=}
     engines: {node: '>= 0.4'}
+
+  effect@3.18.4:
+    resolution: {integrity: sha1-4kH95cwJBgjFHF4p4to1e7XQ6BU=}
 
   electron-to-chromium@1.5.240:
     resolution: {integrity: sha1-v9lGVwpyOqN1Q3AGXQLiPjCCR3Q=}
@@ -1173,6 +1251,10 @@ packages:
 
   emoji-regex@9.2.2:
     resolution: {integrity: sha1-hAyIA7DYBH9P8M+WMXazLU7z7XI=}
+
+  empathic@2.0.0:
+    resolution: {integrity: sha1-cdPCuU+tSVMu+YpsNL4DhmWfYTE=}
+    engines: {node: '>=14'}
 
   enhanced-resolve@5.18.3:
     resolution: {integrity: sha1-m19MXAdrh4fHj+VAOSznaoiFW0Q=}
@@ -1344,6 +1426,13 @@ packages:
   eventemitter3@5.0.1:
     resolution: {integrity: sha1-U/X/0KSSrIAHIbtCxmuEHelkI8Q=}
 
+  exsolve@1.0.7:
+    resolution: {integrity: sha1-O3Tkx8pcX5oZw2JsqFcwn6mfnp4=}
+
+  fast-check@3.23.2:
+    resolution: {integrity: sha1-ASnx635PUA9Y6CkO3IPGcOSldKI=}
+    engines: {node: '>=8.0.0'}
+
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha1-On1WtVnWy8PrUSMlJE5hmmXGxSU=}
 
@@ -1435,6 +1524,10 @@ packages:
 
   get-tsconfig@4.13.0:
     resolution: {integrity: sha1-/N2ZHm0iq5pgDwDpHDGHB6XZoNc=}
+
+  giget@2.0.0:
+    resolution: {integrity: sha1-OV/JNKQ/mnopop1VuZ8j4wwU8ZU=}
+    hasBin: true
 
   glob-parent@5.1.2:
     resolution: {integrity: sha1-hpgyxYA0/mikCTwX3BXoNA2EAcQ=}
@@ -1876,8 +1969,16 @@ packages:
       sass:
         optional: true
 
+  node-fetch-native@1.6.7:
+    resolution: {integrity: sha1-nQnKYwZsxIQjIR7UyvXXAHXXanE=}
+
   node-releases@2.0.26:
     resolution: {integrity: sha1-/fonLycYoTCUidGK7071un9d+1I=}
+
+  nypm@0.6.2:
+    resolution: {integrity: sha1-RnUSAklIOY+vpzzqMKPtnvxa8HE=}
+    engines: {node: ^14.16.0 || >=16.10.0}
+    hasBin: true
 
   object-assign@4.1.1:
     resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=}
@@ -1910,6 +2011,9 @@ packages:
   object.values@1.2.1:
     resolution: {integrity: sha1-3u1SClCAn/f3Wnz9S8ZMegOMYhY=}
     engines: {node: '>= 0.4'}
+
+  ohash@2.0.11:
+    resolution: {integrity: sha1-YLEejP9iyp3uiNE3R6W6oUX1kAs=}
 
   onetime@7.0.0:
     resolution: {integrity: sha1-nxbJLYye9RIOOs2d2ZV8zuzBq2A=}
@@ -1954,6 +2058,12 @@ packages:
     resolution: {integrity: sha1-hO0BwKe6OAr+CdkKjBgNzZ0DBDs=}
     engines: {node: '>=8'}
 
+  pathe@2.0.3:
+    resolution: {integrity: sha1-PsvsVUIWhbcKnahyss/z4cvtFxY=}
+
+  perfect-debounce@1.0.0:
+    resolution: {integrity: sha1-nC6LwwsWnMmEpYt9WygEmDlZHSo=}
+
   picocolors@1.1.1:
     resolution: {integrity: sha1-PTIa8+q5ObCDyPkpodEs2oHCa2s=}
 
@@ -1969,6 +2079,9 @@ packages:
     resolution: {integrity: sha1-kK17bULVhB5p4KJBnvOPiIOqBXw=}
     engines: {node: '>=0.10'}
     hasBin: true
+
+  pkg-types@2.3.0:
+    resolution: {integrity: sha1-A38sGb1UApZv9oEOMnBlWMtbVyY=}
 
   possible-typed-array-names@1.1.0:
     resolution: {integrity: sha1-k+NYK8DlQmWG2dB7ee5A/IQd5K4=}
@@ -1991,6 +2104,16 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  prisma@6.18.0:
+    resolution: {integrity: sha1-rG59Joe0mlPFFtn1opb30MtWZOo=}
+    engines: {node: '>=18.18'}
+    hasBin: true
+    peerDependencies:
+      typescript: '>=5.1.0'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   prop-types@15.8.1:
     resolution: {integrity: sha1-Z9h78aaU9IQ1zzMsJK8QIUoxQLU=}
 
@@ -1998,8 +2121,14 @@ packages:
     resolution: {integrity: sha1-AnQi4vrsCyXhVJw+G9gwm5EztuU=}
     engines: {node: '>=6'}
 
+  pure-rand@6.1.0:
+    resolution: {integrity: sha1-0XPPIyWCMZdsy9sFJHyXh5V2BPI=}
+
   queue-microtask@1.2.3:
     resolution: {integrity: sha1-SSkii7xyTfrEPg77BYyve2z7YkM=}
+
+  rc9@2.1.2:
+    resolution: {integrity: sha1-YoL/Y4pQyqCpGjHXavSgucvRCA0=}
 
   react-dom@19.2.0:
     resolution: {integrity: sha1-AO0elZw2XpqdSPiRg3dGVGbsOvg=}
@@ -2027,6 +2156,10 @@ packages:
   react@19.2.0:
     resolution: {integrity: sha1-0z3RchaY9Ddq5XpUCYy0f8ddk6U=}
     engines: {node: '>=0.10.0'}
+
+  readdirp@4.1.2:
+    resolution: {integrity: sha1-64WAFDX78qfuWPGeCSGwaPxplI0=}
+    engines: {node: '>= 14.18.0'}
 
   reflect.getprototypeof@1.0.10:
     resolution: {integrity: sha1-xikhnnijMW2LYEx2XvaJlpZOe/k=}
@@ -2230,6 +2363,9 @@ packages:
   tapable@2.3.0:
     resolution: {integrity: sha1-fj6m1coxuo4Hi1YPDYPOmhSqi+Y=}
     engines: {node: '>=6'}
+
+  tinyexec@1.0.1:
+    resolution: {integrity: sha1-cMMat6u7SuoKJPVdEg5ZkL+h4LE=}
 
   tinyglobby@0.2.15:
     resolution: {integrity: sha1-4ijdHmOM6pk9L9tPzS1GAqeZUcI=}
@@ -2871,7 +3007,44 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@prisma/client@6.18.0(prisma@6.18.0(typescript@5.9.3))(typescript@5.9.3)':
+    optionalDependencies:
+      prisma: 6.18.0(typescript@5.9.3)
+      typescript: 5.9.3
+
+  '@prisma/config@6.18.0':
+    dependencies:
+      c12: 3.1.0
+      deepmerge-ts: 7.1.5
+      effect: 3.18.4
+      empathic: 2.0.0
+    transitivePeerDependencies:
+      - magicast
+
+  '@prisma/debug@6.18.0': {}
+
+  '@prisma/engines-version@6.18.0-8.34b5a692b7bd79939a9a2c3ef97d816e749cda2f': {}
+
+  '@prisma/engines@6.18.0':
+    dependencies:
+      '@prisma/debug': 6.18.0
+      '@prisma/engines-version': 6.18.0-8.34b5a692b7bd79939a9a2c3ef97d816e749cda2f
+      '@prisma/fetch-engine': 6.18.0
+      '@prisma/get-platform': 6.18.0
+
+  '@prisma/fetch-engine@6.18.0':
+    dependencies:
+      '@prisma/debug': 6.18.0
+      '@prisma/engines-version': 6.18.0-8.34b5a692b7bd79939a9a2c3ef97d816e749cda2f
+      '@prisma/get-platform': 6.18.0
+
+  '@prisma/get-platform@6.18.0':
+    dependencies:
+      '@prisma/debug': 6.18.0
+
   '@rtsao/scc@1.1.0': {}
+
+  '@standard-schema/spec@1.0.0': {}
 
   '@standard-schema/utils@0.3.0': {}
 
@@ -3285,6 +3458,21 @@ snapshots:
       node-releases: 2.0.26
       update-browserslist-db: 1.1.4(browserslist@4.27.0)
 
+  c12@3.1.0:
+    dependencies:
+      chokidar: 4.0.3
+      confbox: 0.2.2
+      defu: 6.1.4
+      dotenv: 16.6.1
+      exsolve: 1.0.7
+      giget: 2.0.0
+      jiti: 2.6.1
+      ohash: 2.0.11
+      pathe: 2.0.3
+      perfect-debounce: 1.0.0
+      pkg-types: 2.3.0
+      rc9: 2.1.2
+
   call-bind-apply-helpers@1.0.2:
     dependencies:
       es-errors: 1.3.0
@@ -3311,6 +3499,14 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
+  chokidar@4.0.3:
+    dependencies:
+      readdirp: 4.1.2
+
+  citty@0.1.6:
+    dependencies:
+      consola: 3.4.2
+
   cli-cursor@5.0.0:
     dependencies:
       restore-cursor: 5.1.0
@@ -3335,6 +3531,10 @@ snapshots:
   commander@14.0.2: {}
 
   concat-map@0.0.1: {}
+
+  confbox@0.2.2: {}
+
+  consola@3.4.2: {}
 
   convert-source-map@1.9.0: {}
 
@@ -3386,6 +3586,8 @@ snapshots:
 
   deep-is@0.1.4: {}
 
+  deepmerge-ts@7.1.5: {}
+
   define-data-property@1.1.4:
     dependencies:
       es-define-property: 1.0.1
@@ -3398,6 +3600,10 @@ snapshots:
       has-property-descriptors: 1.0.2
       object-keys: 1.1.1
 
+  defu@6.1.4: {}
+
+  destr@2.0.5: {}
+
   detect-libc@2.1.2: {}
 
   doctrine@2.1.0:
@@ -3409,17 +3615,26 @@ snapshots:
       '@babel/runtime': 7.28.4
       csstype: 3.1.3
 
+  dotenv@16.6.1: {}
+
   dunder-proto@1.0.1:
     dependencies:
       call-bind-apply-helpers: 1.0.2
       es-errors: 1.3.0
       gopd: 1.2.0
 
+  effect@3.18.4:
+    dependencies:
+      '@standard-schema/spec': 1.0.0
+      fast-check: 3.23.2
+
   electron-to-chromium@1.5.240: {}
 
   emoji-regex@10.6.0: {}
 
   emoji-regex@9.2.2: {}
+
+  empathic@2.0.0: {}
 
   enhanced-resolve@5.18.3:
     dependencies:
@@ -3742,6 +3957,12 @@ snapshots:
 
   eventemitter3@5.0.1: {}
 
+  exsolve@1.0.7: {}
+
+  fast-check@3.23.2:
+    dependencies:
+      pure-rand: 6.1.0
+
   fast-deep-equal@3.1.3: {}
 
   fast-glob@3.3.1:
@@ -3844,6 +4065,15 @@ snapshots:
   get-tsconfig@4.13.0:
     dependencies:
       resolve-pkg-maps: 1.0.0
+
+  giget@2.0.0:
+    dependencies:
+      citty: 0.1.6
+      consola: 3.4.2
+      defu: 6.1.4
+      node-fetch-native: 1.6.7
+      nypm: 0.6.2
+      pathe: 2.0.3
 
   glob-parent@5.1.2:
     dependencies:
@@ -4246,7 +4476,17 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
+  node-fetch-native@1.6.7: {}
+
   node-releases@2.0.26: {}
+
+  nypm@0.6.2:
+    dependencies:
+      citty: 0.1.6
+      consola: 3.4.2
+      pathe: 2.0.3
+      pkg-types: 2.3.0
+      tinyexec: 1.0.1
 
   object-assign@4.1.1: {}
 
@@ -4289,6 +4529,8 @@ snapshots:
       call-bound: 1.0.4
       define-properties: 1.2.1
       es-object-atoms: 1.1.1
+
+  ohash@2.0.11: {}
 
   onetime@7.0.0:
     dependencies:
@@ -4336,6 +4578,10 @@ snapshots:
 
   path-type@4.0.0: {}
 
+  pathe@2.0.3: {}
+
+  perfect-debounce@1.0.0: {}
+
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
@@ -4343,6 +4589,12 @@ snapshots:
   picomatch@4.0.3: {}
 
   pidtree@0.6.0: {}
+
+  pkg-types@2.3.0:
+    dependencies:
+      confbox: 0.2.2
+      exsolve: 1.0.7
+      pathe: 2.0.3
 
   possible-typed-array-names@1.1.0: {}
 
@@ -4362,6 +4614,15 @@ snapshots:
 
   prettier@3.6.2: {}
 
+  prisma@6.18.0(typescript@5.9.3):
+    dependencies:
+      '@prisma/config': 6.18.0
+      '@prisma/engines': 6.18.0
+    optionalDependencies:
+      typescript: 5.9.3
+    transitivePeerDependencies:
+      - magicast
+
   prop-types@15.8.1:
     dependencies:
       loose-envify: 1.4.0
@@ -4370,7 +4631,14 @@ snapshots:
 
   punycode@2.3.1: {}
 
+  pure-rand@6.1.0: {}
+
   queue-microtask@1.2.3: {}
+
+  rc9@2.1.2:
+    dependencies:
+      defu: 6.1.4
+      destr: 2.0.5
 
   react-dom@19.2.0(react@19.2.0):
     dependencies:
@@ -4395,6 +4663,8 @@ snapshots:
       react-dom: 19.2.0(react@19.2.0)
 
   react@19.2.0: {}
+
+  readdirp@4.1.2: {}
 
   reflect.getprototypeof@1.0.10:
     dependencies:
@@ -4663,6 +4933,8 @@ snapshots:
   tailwindcss@4.1.16: {}
 
   tapable@2.3.0: {}
+
+  tinyexec@1.0.1: {}
 
   tinyglobby@0.2.15:
     dependencies:
